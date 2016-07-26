@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="todoApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Angular Pro</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap-theme.css">
+    <script src="node_modules/angular/angular.min.js"></script>
+    <script src="node_modules/lodash/lodash.min.js"></script>
+    <script src="app.js"></script>
+</head>
+<body ng-controller="ToDoCtrl">
+<div class="page-header">
+    <h3 class="text-center text-success">Add Task</h3>
+</div>
+<div class=" container  panel">
+    <div class="input-group">
+        <input class="form-control" ng-model="task"/>
+                <span class="input-group-btn">
+                    <button class="btn btn-default" ng-click="addTask()">Add</button>
+                </span>
+    </div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Description</th>
+            <th>Completed</th>
+            <th></th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="todos in tasks">
+            <td>{{todos.todo}}</td>
+            <td style="padding: 2px; ">{{todos.done}}
+                <input type="button" class="btn btn-danger btn-sm" value="X"
+                                                              style="float: right;margin-right: 25px;margin-top: 3px;"  ng-click="delete($index)">
+                <input type="button" class="btn btn-success btn-sm" value="Done"
+                       style="margin-right: 25px;float: right;margin-top: 3px;" ng-click="done($index)">
+                <input type="button" class="btn btn-success btn-sm" value="Update"
+                       style="margin-right: 25px;float: right;margin-top: 3px;" ng-click="update($index)">
+                <input type="checkbox" class=" checkbox-inline form-group "
+                       style="height: 20px;width: 20px;margin-top: 8px;margin-right: 25px;float: right;" ng-model='checkStatus' ng-click="checkIt($index)"></td>
+
+        </tr>
+        </tbody>
+    </table>
+    <div clas="container-fluid">
+        <div class="col-sm-2" style="float: right;margin-top: 10px">
+            <input type="button" class="form-control btn btn-success" value="Clear Completed" ng-click="clearSelected()">
+        </div>
+    </div>
+</div>
+</body>
+</html>
